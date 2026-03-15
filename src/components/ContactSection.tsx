@@ -169,10 +169,10 @@ export const ContactSection = () => {
                 <Mail className="w-5 h-5" />
                 For enterprise and partnership inquiries:{" "}
                 <a
-                  href="mailto:contact@xstinkt.com"
+                  href="mailto:hello@xstinkt.com"
                   className="text-primary font-medium hover:underline"
                 >
-                  contact@xstinkt.com
+                  hello@xstinkt.com
                 </a>
               </p>
             </div>
