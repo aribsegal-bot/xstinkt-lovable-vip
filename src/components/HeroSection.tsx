@@ -46,7 +46,7 @@ const HeroSection = () => {
         
         <div className="max-w-md mx-auto bg-black/40 border border-white/10 p-8 rounded-2xl backdrop-blur-md mb-12">
           <h3 className="text-2xl font-bold mb-2 text-white">Join the VIP List</h3>
-          <p className="text-gray-400 mb-6 text-sm">Drop your email to get 40% off the Super Early Bird tier when we launch on Kickstarter.</p>
+          <p className="text-gray-400 mb-6 text-sm">Drop your email to get 40% off the Super Early Bird tier when we launch on Indiegogo.</p>
           
           {submitted ? (
             <div className="bg-green-500/20 border border-green-500/50 text-green-400 p-4 rounded-lg">
