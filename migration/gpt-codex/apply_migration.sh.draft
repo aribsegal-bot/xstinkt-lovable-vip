@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# =============================================================================
+# apply_migration.sh — DRAFT (intentionally NOT executable, NOT auto-running)
+#
+# This script would copy the reviewed Codex drafts into their live locations.
+# It ships fully COMMENTED so nothing happens by accident.
+#
+# HOW TO USE:
+#   1. Review every draft in migration/gpt-codex/ first.
+#   2. Uncomment the blocks you want.
+#   3. Rename to apply_migration.sh and `chmod +x` it.
+#   4. Run from the repo root: ./apply_migration.sh
+#
+# This script never installs packages, never commits, never deploys, and never
+# touches .env or secrets.
+# =============================================================================
+
+set -euo pipefail
+
+# Resolve repo root (directory containing this pack's parent).
+# REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+# PACK_DIR="$REPO_ROOT/migration/gpt-codex"
+# echo "Repo root: $REPO_ROOT"
+
+# --- Safety guard: refuse to run if AGENTS.md already exists ------------------
+# if [ -f "$REPO_ROOT/AGENTS.md" ]; then
+#   echo "AGENTS.md already exists at repo root. Review/merge manually; aborting."
+#   exit 1
+# fi
+
+# --- 1. Install AGENTS.md at the repo root -----------------------------------
+# cp "$PACK_DIR/AGENTS.md.draft" "$REPO_ROOT/AGENTS.md"
+# echo "Created $REPO_ROOT/AGENTS.md"
+
+# --- 2. Install Codex skills --------------------------------------------------
+# Adjust SKILLS_DEST to your Codex skills location (project- or user-level).
+# SKILLS_DEST="$REPO_ROOT/.codex/skills"      # example: project-level
+# mkdir -p "$SKILLS_DEST"
+# for skill_dir in "$PACK_DIR"/skills/*/; do
+#   name="$(basename "$skill_dir")"
+#   mkdir -p "$SKILLS_DEST/$name"
+#   cp "$skill_dir/SKILL.md" "$SKILLS_DEST/$name/SKILL.md"
+#   echo "Installed skill: $name"
+# done
+
+# --- 3. Codex config (MANUAL — do not auto-merge) ----------------------------
+# config.toml is environment-specific and may already exist. Merge by hand:
+# echo "Reminder: manually merge desired lines from codex_config.toml.draft into"
+# echo "your Codex config (e.g. ~/.codex/config.toml). Do NOT paste secrets."
+
+# --- 4. (Optional) gitignore the tracked .env --------------------------------
+# SENSITIVE_REVIEW_REQUIRED: decide intentionally before running this.
+# echo ".env" >> "$REPO_ROOT/.gitignore"
+# git -C "$REPO_ROOT" rm --cached .env   # stops tracking without deleting local file
+
+# echo "Done. Review changes with: git -C \"$REPO_ROOT\" status"
+echo "This is a DRAFT. Open the file, uncomment the steps you want, then run it."

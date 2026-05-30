@@ -1,0 +1,58 @@
+# =============================================================================
+# Codex config.toml — DRAFT
+# Merge the parts you want into your Codex config (typically ~/.codex/config.toml).
+# Do NOT paste secrets here. Reference environment variables by name only.
+# Everything below is conservative and optional. Lines are commented where they
+# require a manual decision.
+# =============================================================================
+
+# --- Model / reasoning defaults (optional) -----------------------------------
+# This is a small front-end repo; a mid/high reasoning effort is plenty.
+# model = "gpt-5-codex"            # set to whatever Codex model you use
+# model_reasoning_effort = "medium"
+
+# --- Project trust / approvals (optional) ------------------------------------
+# Approve commands explicitly rather than granting blanket access.
+# approval_policy = "on-request"   # ask before running non-trivial commands
+# sandbox_mode    = "workspace-write"
+
+# =============================================================================
+# MCP servers
+# =============================================================================
+# This repository defines NO MCP servers. The block below is an OPTIONAL stub
+# for the Supabase MCP server, useful ONLY if you want Codex to inspect/manage
+# the Supabase project this app points at. Leave it commented unless needed.
+#
+# Manual setup required before enabling:
+#   1. Install the Supabase MCP server (see supabase docs).
+#   2. Export a Supabase access token in your shell, e.g.:
+#        export SUPABASE_ACCESS_TOKEN=...   (do NOT hardcode it here)
+#   3. Restrict it to the correct project ref (see supabase/config.toml).
+#
+# [mcp_servers.supabase]
+# command = "npx"
+# args = [
+#   "-y",
+#   "@supabase/mcp-server-supabase@latest",
+#   "--read-only",                       # start read-only; widen only if needed
+#   "--project-ref=<SUPABASE_PROJECT_REF>"
+# ]
+#   # Token is read from the environment — never inline it.
+#   # env = { SUPABASE_ACCESS_TOKEN = "<SUPABASE_ACCESS_TOKEN>" }
+
+# =============================================================================
+# Environment variable placeholders (names only — values live in your shell/.env)
+# =============================================================================
+# Client (Vite) build vars — consumed by the app, not by Codex:
+#   VITE_SUPABASE_URL
+#   VITE_SUPABASE_PUBLISHABLE_KEY
+#   VITE_SUPABASE_PROJECT_ID
+#
+# If you wire up the OpenAI/Codex API directly anywhere:
+#   OPENAI_API_KEY        # never commit; export in your shell
+#
+# If you use the GitHub MCP/integration:
+#   GITHUB_TOKEN          # never commit; export in your shell
+#
+# SENSITIVE_REVIEW_REQUIRED: .env is currently git-tracked in this repo.
+# Consider gitignoring it and committing a .env.example with names only.
